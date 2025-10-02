@@ -1,0 +1,87 @@
+
+%defense stocks
+
+% Define the tickers and their corresponding company names
+tickers = {'LMT', 'NOC', 'RTX', 'GD', 'AVAV'};
+companyNames = {'Lockheed Martin', 'Northrop Grumman', 'Raytheon Technologies', 'General Dynamics', 'AeroVironment'};
+
+% Define the folder containing the Excel files (update this path)
+folderPath = 'defenseStocks'; % Update this path
+
+% Loop through each ticker symbol
+for i = 1:length(tickers)
+    % Construct the file name based on the ticker symbol
+    fileName = fullfile(folderPath, [tickers{i}, '.xlsx']);
+
+    % Check if the file exists
+    if isfile(fileName)
+        % Read the data from the Excel file
+        data = readtable(fileName);
+
+        % Check if 'Date' and 'Close' columns exist
+        if ismember('Date', data.Properties.VariableNames) && ismember('Close', data.Properties.VariableNames)
+            % Create a new figure for each plot
+            figure;
+
+            % Plot the data
+            plot(data.Date, data.Close);
+            xlabel('Date'); % Label for x-axis
+            ylabel('Price'); % Label for y-axis
+
+            % Set the title to include the company name
+            title(['Price vs Date for ', companyNames{i}]);
+            grid on; % Add grid for better readability
+        else
+            warning(['Columns "Date" or "Close" not found in ', tickers{i}, '.xlsx']);
+        end
+    else
+        warning(['File not found: ', fileName]);
+    end
+end
+
+
+%sector stocks 
+
+
+
+% Define the tickers and their corresponding company names
+tickers = {'XLB', 'XLE', 'XLF', 'XLI', 'XLK','XLP','XLRE','XLU','XLV','XLY'};
+companyNames = {'', 'Northrop Grumman', 'Raytheon Technologies', 'General Dynamics', 'AeroVironment'};
+
+% Define the folder containing the Excel files (update this path)
+folderPath = 'defenseStocks'; % Update this path
+
+% Loop through each ticker symbol
+for i = 1:length(tickers)
+    % Construct the file name based on the ticker symbol
+    fileName = fullfile(folderPath, [tickers{i}, '.xlsx']);
+
+    % Check if the file exists
+    if isfile(fileName)
+        % Read the data from the Excel file
+        data = readtable(fileName);
+
+        % Check if 'Date' and 'Close' columns exist
+        if ismember('Date', data.Properties.VariableNames) && ismember('Close', data.Properties.VariableNames)
+            % Create a new figure for each plot
+            figure;
+
+            % Plot the data
+            plot(data.Date, data.Close);
+            xlabel('Date'); % Label for x-axis
+            ylabel('Price'); % Label for y-axis
+
+            % Set the title to include the company name
+            title(['Price vs Date for ', companyNames{i}]);
+            grid on; % Add grid for better readability
+        else
+            warning(['Columns "Date" or "Close" not found in ', tickers{i}, '.xlsx']);
+        end
+    else
+        warning(['File not found: ', fileName]);
+    end
+end
+
+
+
+
